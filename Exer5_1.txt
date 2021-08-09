@@ -1,0 +1,23 @@
+create or replace function ano_bix
+(ano number)
+  return varchar2
+is
+anob varchar2(20);
+begin
+  if(((mod(ano, 100) != 0) and (mod(ano, 4) = 0)) or mod(ano, 400) = 0) then
+  anob := 'Ano bissexto';
+  else
+  anob := 'Ano normal';
+  end if;
+  return anob;
+end;
+/  
+
+set SERVEROUTPUT on
+declare
+txt varchar2(50);
+begin
+    txt := ano_bix(2016);
+    dbms_output.put_line(txt);
+end;
+/

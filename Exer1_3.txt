@@ -1,0 +1,19 @@
+set serveroutput on
+  ACCEPT nota prompt 'Nota do aluno?';
+  
+declare
+  nota number(9,2);
+
+  begin
+  if (&nota > 16) THEN
+    dbms_output.put_line('O aluno tem de ir a oral para manter a nota');
+    
+    elsif (&nota between 10 and 16) THEN
+      dbms_output.put_line('O aluno passou ');
+      
+       elsif (&nota between 7 and 10) THEN
+        dbms_output.put_line('O aluno tem de ir a oral para passagem');
+  else
+    dbms_output.put_line('O aluno reprovou');
+  end if;
+end;

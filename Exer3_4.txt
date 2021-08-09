@@ -1,0 +1,27 @@
+SET SERVEROUTPUT ON
+
+ DECLARE 
+        VALOR TEMP.COL1%type;
+        N_CONT TEMP.COL2%type;
+        N_CLIENTE TEMP.MESSAGE%type;
+        N number := 1;
+BEGIN
+  
+      --SELECT sum(preco_unitario*Quantidade) INTO VALOR
+      --FROM vendas
+      --WHERE CODIGO_CLIENTE  = 1;
+      
+      SELECT N_CONTRIBUINTE INTO N_CONT
+      FROM CLIENTES 
+      WHERE CODIGO_CLIENTE = 1;
+      
+      SELECT NOME INTO N_CLIENTE
+      FROM CLIENTES
+      WHERE CODIGO_CLIENTE = 1;
+
+    --DBMS_OUTPUT.PUT_LINE(VALOR);
+    DBMS_OUTPUT.PUT_LINE(N_CONT);--
+    --DBMS_OUTPUT.PUT_LINE("" + N_CLIENTE);
+    
+    
+END;

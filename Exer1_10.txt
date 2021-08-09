@@ -1,0 +1,32 @@
+set serveroutput on
+
+accept cod_livro prompt "Codigo do livro ?";
+
+declare
+
+cod_livro number := '&cod_livro';
+
+preco number;
+gen VARCHAR2(20);
+
+begin
+
+  select PRECO_TABELA, GENERO into preco,gen
+  from livros
+  where CODIGO_LIVRO = cod_livro;
+  
+  if preco < 25 and gen not LIKE 'Aventura' then
+        
+    update livros
+    set PRECO_TABELA = preco*1.10
+    where CODIGO_LIVRO = cod_livro;
+    
+    elsif preco >= 25 and gen not LIKE 'Aventura' then
+    
+      update livros
+      set PRECO_TABELA = preco*1.06
+      where CODIGO_LIVRO = cod_livro;
+    
+  end if;
+  
+end;

@@ -1,0 +1,12 @@
+SET SERVEROUTPUT ON
+DECLARE
+aux_v varchar2(30);
+BEGIN
+select nome into aux_v from autores ;
+
+Exception 
+when TOO_MANY_ROWS then
+DBMS_OUTPUT.PUT_LINE('Demasiadas Linhas Imprimidas');
+
+END;
+/

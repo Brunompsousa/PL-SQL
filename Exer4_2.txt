@@ -1,0 +1,27 @@
+--Exercicio 2
+/*2. Crie um procedimento que receba um nome e quatro notas. A partir destes valores deve introduzir numa
+tabela os campos, nome, nota 1, nota 2, nota 3, nota 4, média, resultado (aprovado ou reprovado). Deve criar
+a tabela para receber os dados. */
+create table pauta(
+  nota_1 decimal,
+  nota_2 decimal,
+  nota_3 decimal,
+  nota_4 decimal,
+  media decimal,
+  resultado varchar(20)
+);
+/
+create procedure Resultado(nome varchar, nota1 number,nota2 number,nota3 number,nota4 number)
+is
+    media decimal;
+Begin
+    media := (nota1 + nota2+nota3+nota4)/4;
+    if media < 10 then
+        insert into pauta (nota_1,nota_2,nota_3,nota_4,media,resultado) values (nota1,nota2,nota3,nota4,media,'reprovado');
+    else 
+        insert into pauta (nota_1,nota_2,nota_3,nota_4,media,resultado) values (nota1,nota2,nota3,nota4,media,'aprovado');
+    end if;
+End;
+/
+
+Execute Resultado('Henrique',12,15,13,16);

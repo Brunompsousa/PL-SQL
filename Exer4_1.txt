@@ -1,0 +1,21 @@
+--Exercicio1
+--Crie um procedimento que receba dois números e imprima a tabuada, do primeiro até ao último. 
+create or replace procedure tabuada(num1 number, num2 number)
+is
+  i number;
+  j number;
+  resultado number;
+Begin
+    For i in num1..num2
+    Loop
+        For j in 1..10
+        Loop
+          resultado := (i*j);
+          dbms_output.put_line(i || ' * ' || j || ' = '|| resultado);
+        End Loop;
+        dbms_output.put_line('=============');
+    End Loop;
+End;
+/
+set SERVEROUTPUT on
+Execute tabuada(3,9);

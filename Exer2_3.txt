@@ -1,0 +1,26 @@
+declare
+
+  v_codigo_livro livros.codigo_livro%type;
+  v_preco livros.preco_tabela%type;
+  
+  cursor c1 is
+    select codigo_livro,preco_tabela
+    from livros
+    where genero in ('Aventura','Romance') and preco_tabela<=50
+    for update of preco_tabela;
+    
+begin
+
+  for r in c1
+  loop
+    
+    if v_preco < 25 then
+        update livros set preco_tabela=preco_tabela*1.1
+        where current of c1;
+      elsif v_preco < 50 then
+        update livros set preco_tabela=preco_tabela*1.06
+        where current of c1;
+    end if;
+  end loop;
+
+end;

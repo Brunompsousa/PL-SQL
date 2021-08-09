@@ -1,0 +1,5 @@
+create table erros (
+erro number(10),
+mensagem_do_erro varchar2(250),
+data_hora date
+);

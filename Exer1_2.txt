@@ -1,0 +1,23 @@
+set serveroutput on
+  ACCEPT sexo prompt 'sexo? M ou F';
+  ACCEPT altura prompt 'altura?';
+  
+declare
+  pesoideal number(9,2);
+  sexo varchar2(20) := '&sexo'; /* para que fique com o valor introduzido e nao presisemos de usar o & */
+  
+  begin
+  if (sexo = 'F') or (sexo = 'f') THEN
+    pesoideal := (62.1*&altura);
+    pesoideal := pesoideal-44.7;
+    dbms_output.put_line('Mulher: ' || pesoideal);
+    
+    elsif(sexo = 'M') or (sexo = 'm') THEN
+      pesoideal := (72.7*&altura);
+      pesoideal := pesoideal-58;
+      dbms_output.put_line('Homem: ' || pesoideal);
+      
+  else
+    dbms_output.put_line('Erro na escolha do sexo');
+  end if;
+end;

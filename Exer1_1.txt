@@ -1,0 +1,6 @@
+create table temp
+(
+col1 number (10),
+col2 number (20),
+message varchar2 (100)
+);

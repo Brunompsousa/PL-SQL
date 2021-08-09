@@ -1,0 +1,38 @@
+set serveroutput on
+
+accept cod_livro prompt "Codigo do livro ?";
+
+declare
+
+cod_livro number := '&cod_livro';
+
+cod_l int;
+cod_a int;
+ver int := 0;
+
+begin
+
+  select CODIGO_LIVRO,CODIGO_AUTOR into cod_l,cod_a
+  from livros
+  where CODIGO_LIVRO = cod_livro;
+  
+  select CODIGO_AUTOR into ver
+  from livros
+  where CODIGO_AUTOR = 80;
+
+  if cod_a = 17 then
+  
+    if ver != 80 then
+    
+      insert into AUTORES (CODIGO_AUTOR,NOME, N_CONTRIBUINTE, MORADA,IDADE, SEXO, NACIONALIDADE, GENERO_PREFERIDO)
+      values (80,'Luis Moreno Campos',23432432,'Lisboa',30,'M','Portuguesa','Informática');
+          
+    end if;     
+          
+    update livros
+    set CODIGO_AUTOR = 80
+    where CODIGO_LIVRO = cod_l;
+    
+  end if;
+  
+end;

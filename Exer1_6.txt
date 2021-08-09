@@ -1,0 +1,3 @@
+Ao mudarmos 1 dos registos, e criado o autor com o cod 80.
+Quando tentamos mudar outro livro e nos mostrado um erro pois o autor com o codigo 80
+	ja existe e nao pode ser criado outra vez.

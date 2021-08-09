@@ -1,0 +1,49 @@
+create or replace function ano_bix
+(n1 number,n2 number, n3 number)
+  return number
+is
+mb number;
+excp EXCEPTION;
+
+begin
+  
+  if(n1 = n2) or (n1 = n3) or (n2 = n3) then
+    RAISE excp; 
+  end if;
+  
+  if((n1 < n2) and (n1 < n3)) then
+    if(n2 < n3)then
+      mb := n2;
+      else
+      mb := n3;
+    end if;
+    elsif((n2 < n1) and (n2 < n3))then
+      if(n2 < n3)then
+        mb := n2;
+        else
+        mb := n3;
+      end if;
+      elsif((n3 < n1) and (n3 < n2))then
+      if(n1 < n2)then
+        mb := n2;
+        else
+        mb := n1;
+      end if;
+  end if;
+return mb;
+
+EXCEPTION 
+   WHEN excp THEN 
+    dbms_output.put_line('Existem numeros iguais'); 
+    return 0;
+end;
+/  
+
+set SERVEROUTPUT on
+declare
+txt varchar2(50);
+begin
+    txt := TO_CHAR(ano_bix(2,2,9),'9999');
+    dbms_output.put_line(txt);
+end;
+/

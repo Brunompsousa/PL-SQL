@@ -1,0 +1,21 @@
+set serveroutput on
+  
+declare
+  col1 number(9,2) := 1;
+  col2 number(9,2) := 0;
+  
+begin
+  
+  for col1 in 1..100
+  LOOP
+    col2 := col2 + 100;
+    if mod(col1,2) = 1 THEN
+      insert into temp (col1,col2,message)
+        values (col1,col2,'Col1 e impar');
+      ELSE 
+      insert into temp (col1,col2,message)
+        values (col1,col2,'Col1 e par');
+      end if;
+  end loop;
+  
+end;
